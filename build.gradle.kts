@@ -45,8 +45,9 @@ kotlin {
         }
     }
     sourceSets {
-        val jsMain by getting {
+        val commonMain by getting {
             dependencies {
+                implementation(project(":compose"))
                 implementation(project(":framework"))
             }
         }

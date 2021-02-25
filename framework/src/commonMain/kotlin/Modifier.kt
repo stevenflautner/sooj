@@ -1,5 +1,3 @@
-package compose.web
-
 import androidx.compose.runtime.Stable
 
 // taken from android version
