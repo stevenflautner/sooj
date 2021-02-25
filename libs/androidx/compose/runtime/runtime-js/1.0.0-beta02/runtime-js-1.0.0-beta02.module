@@ -1,0 +1,131 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../runtime/1.0.0-beta02/runtime-1.0.0-beta02.module",
+    "group": "androidx.compose.runtime",
+    "module": "runtime",
+    "version": "1.0.0-beta02",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "0"
+    }
+  },
+  "variants": [
+    {
+      "name": "jsApiElements-published",
+      "attributes": {
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-js",
+          "version": {
+            "requires": "1.4.30"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.4.30"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.4.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-collections-immutable",
+          "version": {
+            "requires": "0.3.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "runtime-js-1.0.0-beta02.klib",
+          "url": "runtime-js-1.0.0-beta02.klib",
+          "size": 566682,
+          "sha512": "2450b21f3180de81d892f0c6c4346c932db693d735e7103b449505409b10f621e0bc5e3a6ecf25bf0eea1f05c55e9edc7c71bd46aef67732b139a2be9812dc80",
+          "sha256": "26d50319e308fbd8b10932a6eb70a8c71a52fd4d814695dff99e427120032b13",
+          "sha1": "8e4b2a97fb9f584c2110fe518e984376dec1290c",
+          "md5": "fdd63f80de8abdfbff8e8772e94dc189"
+        }
+      ]
+    },
+    {
+      "name": "jsRuntimeElements-published",
+      "attributes": {
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-js",
+          "version": {
+            "requires": "1.4.30"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.4.30"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.4.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-collections-immutable",
+          "version": {
+            "requires": "0.3.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "runtime-js-1.0.0-beta02.klib",
+          "url": "runtime-js-1.0.0-beta02.klib",
+          "size": 566682,
+          "sha512": "2450b21f3180de81d892f0c6c4346c932db693d735e7103b449505409b10f621e0bc5e3a6ecf25bf0eea1f05c55e9edc7c71bd46aef67732b139a2be9812dc80",
+          "sha256": "26d50319e308fbd8b10932a6eb70a8c71a52fd4d814695dff99e427120032b13",
+          "sha1": "8e4b2a97fb9f584c2110fe518e984376dec1290c",
+          "md5": "fdd63f80de8abdfbff8e8772e94dc189"
+        }
+      ]
+    },
+    {
+      "name": "metadataApiElements-published",
+      "attributes": {
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "available-at": {
+        "url": "../../runtime-metadata/1.0.0-beta02/runtime-metadata-1.0.0-beta02.module",
+        "group": "androidx.compose.runtime",
+        "module": "runtime-metadata",
+        "version": "1.0.0-beta02"
+      }
+    }
+  ]
+}
