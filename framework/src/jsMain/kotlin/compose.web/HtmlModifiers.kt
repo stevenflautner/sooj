@@ -1,3 +1,5 @@
+import org.w3c.dom.css.CSSStyleDeclaration
+
 //package compose.web
 //
 //import Modifier

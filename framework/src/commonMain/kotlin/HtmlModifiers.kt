@@ -1,14 +1,18 @@
+import external.Css
+
 //typealias EventListener = () -> Unit
 
 /**
  * Adds an event listener for the target node which is applied on node recomposition
  */
-internal expect class EventModifier : Modifier.Element
+expect class EventModifier : EventModifierBase
 
-///**
-// * Adds a css style configuration which would be applied when node is updated
-// */
-//internal class CssModifier(val configure: CSSStyleDeclaration.() -> Unit) : Modifier.Element
+abstract class EventModifierBase(val eventName: String) : Modifier.Element
+
+/**
+ * Adds a css style configuration which would be applied when node is updated
+ */
+internal class CssModifier(val configure: Css.() -> Unit) : Modifier.Element
 
 ///**
 // * Updates target node properties on recomposition
@@ -21,8 +25,8 @@ internal expect class EventModifier : Modifier.Element
 // */
 //internal class RefModifier(val configure: HTMLElement.() -> Unit): Modifier.Element
 
-//fun Modifier.css(configure: CSSStyleDeclaration.() -> Unit): Modifier =
-//    this.then(CssModifier(configure))
+fun Modifier.css(css: Css.() -> Unit): Modifier =
+    this.then(CssModifier(css))
 
 expect fun Modifier.event(eventName: String, listener: () -> Unit) : Modifier
 

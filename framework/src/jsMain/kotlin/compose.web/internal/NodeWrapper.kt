@@ -1,7 +1,10 @@
 package compose.web.internal
 
+import CssModifier
 import EventModifier
 import Modifier
+import external.Css
+import external.applyCss
 import kotlinx.browser.document
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
@@ -31,7 +34,7 @@ internal class NodeWrapper internal constructor(internal val realNode: Node) {
 
         next.foldOut(Unit) { mod, _ ->
             when (mod) {
-//                is CssModifier -> element.style.apply(mod.configure)
+                is CssModifier -> element.style.applyCss(Css().apply(mod.configure))
                 is EventModifier -> element.addEventListener(mod.eventName, mod.listener)
 //                is PropertyModifier -> element.apply(mod.configure)
 //                is RefModifier -> mod.configure(element)

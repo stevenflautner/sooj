@@ -6,4 +6,7 @@ actual fun Modifier.event(eventName: String, listener: () -> Unit) : Modifier =
 /**
  * Adds an event listener for the target node which is applied on node recomposition
  */
-internal actual class EventModifier(val eventName: String, val listener: EventListener) : Modifier.Element
+actual class EventModifier(
+    eventName: String,
+    val listener: EventListener
+) : EventModifierBase(eventName)
