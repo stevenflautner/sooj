@@ -6,7 +6,7 @@
 //import org.w3c.dom.events.InputEvent
 //import org.w3c.dom.events.KeyboardEvent
 //
-//fun Modifier.onClick(action: (Event) -> Unit): Modifier =
+//fun Modifier.io.sooj.onClick(action: (Event) -> Unit): Modifier =
 //    event("click", EventListener(action))
 //
 //fun Modifier.onInput(action: (InputEvent) -> Unit): Modifier =

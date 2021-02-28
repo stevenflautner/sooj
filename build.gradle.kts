@@ -25,6 +25,17 @@ subprojects {
 //}
 
 kotlin {
+    jvm {
+        compilation()
+        val jvmJar by tasks.getting(org.gradle.jvm.tasks.Jar::class) {
+            doFirst {
+                manifest {
+                    attributes["Main-Class"] = "ServerKt"
+                }
+                from(configurations.getByName("runtimeClasspath").map { if (it.isDirectory) it else zipTree(it) })
+            }
+        }
+    }
     js(IR) {
         browser {
             binaries.executable()
@@ -54,10 +65,27 @@ kotlin {
     }
 }
 
+tasks.create<JavaExec>("serverRun").apply {
+//                environment("DEV", true)
+//                args.add("DEV")
+//    systemProperty("server", true)
+//    project.setProperty("server", true)
+    doFirst {
+        project.ext["server"] = true
+    }
 
-//// THIS GIVES RUNTIME ERROR OF SHOULD
-//// HAVE BEEN REPLACED BY COMPILER IF MISSING//configureComposeCompiler()
-//dependencies {
-//    "kotlinCompilerPluginClasspath"(files("$rootDir/libs/embedded.jar"))
+    dependsOn(tasks.getByName("jvmJar"))
+    classpath(tasks.getByName("jvmJar"))
+}
+
+//tasks.getByName("compileKotlin").apply {
+//    doFirst {
+//        project.ext["server"] = true
+//    }
 //}
+
+gradle.taskGraph.beforeTask {
+    project.ext["server"] = true
+}
+
 configureComposeCompiler()

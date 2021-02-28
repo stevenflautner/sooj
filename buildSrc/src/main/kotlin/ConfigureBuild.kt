@@ -1,32 +1,65 @@
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.RepositoryHandler
-import org.gradle.kotlin.dsl.DependencyHandlerScope
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
-import org.gradle.kotlin.dsl.maven
+import org.gradle.api.tasks.JavaExec
+import org.gradle.jvm.tasks.Jar
+import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsTargetDsl
+import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 import java.io.File
 
 fun RepositoryHandler.libsRepository(rootDir: File) {
     maven(url = File(rootDir, "libs").toURI())
 }
 
-fun DependencyHandlerScope.composeRuntimeJs(): Dependency = create("androidx.compose.runtime:runtime-js:1.0.0-beta02")
+//fun DependencyHandlerScope.composeRuntimeJs(): Dependency = create("androidx.compose.runtime:runtime-js:1.0.0-beta02")
 
-fun Project.configureComposeCompiler() {
+fun Project.addComposeCompilerDependency() {
     dependencies {
         "kotlinCompilerPluginClasspath"(files("$rootDir/libs/embedded.jar"))
     }
+}
 
-    extensions.getByType<KotlinMultiplatformExtension>().apply {
+fun KotlinJvmTarget.compilation() {
+    withJava()
+    compilations.all {
+        kotlinOptions.jvmTarget = "1.8"
+//        kotlinOptions.useIR = true
+    }
+}
+
+fun Project.configureComposeCompiler() {
+    // Ignore compiler on the server
+    if (extra.has("server")) return
+
+//    gradle.taskGraph.hasTask("serverRun")
+//    if (project.hasProperty("server")) return
+
+    gradle.taskGraph.whenReady {
+        if (!gradle.taskGraph.hasTask(":serverRun")) {
+            addComposeCompilerDependency()
+        }
+    }
+
+    fun KotlinJsTargetDsl.configure() {
+        compilations.configureEach {
+            kotlinOptions.freeCompilerArgs += listOf(
+                "-Xopt-in=kotlin.RequiresOptIn",
+                "-P", "plugin:androidx.compose.compiler.plugins.kotlin:generateDecoys=true"
+            )
+        }
+    }
+
+    extensions.findByType<KotlinMultiplatformExtension>()?.apply {
         js(IR) {
-            compilations.configureEach {
-                kotlinOptions.freeCompilerArgs += listOf(
-                    "-Xopt-in=kotlin.RequiresOptIn",
-                    "-P", "plugin:androidx.compose.compiler.plugins.kotlin:generateDecoys=true"
-                )
-            }
+            configure()
+        }
+    } ?:
+    extensions.findByType<KotlinJsProjectExtension>()?.apply {
+        js(IR) {
+            configure()
         }
     }
 }

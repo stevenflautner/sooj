@@ -1,4 +1,4 @@
-package external
+package io.sooj.external
 
 import org.w3c.dom.css.CSSStyleDeclaration
 

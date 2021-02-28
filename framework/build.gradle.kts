@@ -3,6 +3,9 @@ plugins {
 }
 
 kotlin {
+    jvm {
+        compilation()
+    }
     js(IR) {
         browser()
     }

@@ -1,4 +1,4 @@
-package external
+package io.sooj.external
 
 class Css {
     var cssText: String? = null

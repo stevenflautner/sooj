@@ -1,9 +1,12 @@
+package io.sooj
+
 import Modifier
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ComposeNode
 import compose.web.internal.JsApplier
 import compose.web.internal.NodeWrapper
 import kotlinx.browser.document
+import org.w3c.dom.HTMLElement
 import org.w3c.dom.Text
 
 @Composable

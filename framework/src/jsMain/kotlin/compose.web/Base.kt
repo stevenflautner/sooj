@@ -8,7 +8,7 @@ import kotlinx.browser.document
 import org.w3c.dom.Text
 
 //@Composable
-//fun tag(modifier: Modifier, tagName: String, content: @Composable () -> Unit) {
+//fun io.sooj.tag(modifier: Modifier, tagName: String, content: @Composable () -> Unit) {
 //    ComposeNode<NodeWrapper, JsApplier>(
 //        factory = { NodeWrapper(tagName) },
 //        update = {
@@ -19,7 +19,7 @@ import org.w3c.dom.Text
 //}
 
 //@Composable
-//fun text(value: String) {
+//fun io.sooj.text(value: String) {
 //    ComposeNode<NodeWrapper, JsApplier>(
 //        factory = { NodeWrapper(document.createTextNode(value)) },
 //        update = {

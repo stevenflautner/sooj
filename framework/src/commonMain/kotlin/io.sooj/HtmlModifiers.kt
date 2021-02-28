@@ -1,4 +1,10 @@
-import external.Css
+@file:JvmName("_HtmlModifiers")
+
+package io.sooj
+
+import Modifier
+import io.sooj.external.Css
+import kotlin.jvm.JvmName
 
 //typealias EventListener = () -> Unit
 
@@ -14,11 +20,11 @@ abstract class EventModifierBase(val eventName: String) : Modifier.Element
  */
 internal class CssModifier(val configure: Css.() -> Unit) : Modifier.Element
 
-///**
-// * Updates target node properties on recomposition
-// * Properties are not cleared automatically (yet) when modifier is removed
-// */
-//internal class PropertyModifier(val configure: HTMLElement.() -> Unit): Modifier.Element
+/**
+ * Updates target node properties on recomposition
+ * Properties are not cleared automatically (yet) when modifier is removed
+ */
+internal class AttrModifier(val key: String, value: Any?): Modifier.Element
 
 ///**
 // * Provides access to underlying HTML element
@@ -27,6 +33,8 @@ internal class CssModifier(val configure: Css.() -> Unit) : Modifier.Element
 
 fun Modifier.css(css: Css.() -> Unit): Modifier =
     this.then(CssModifier(css))
+fun Modifier.backgroundColor(backgroundColor: String): Modifier =
+    this.then(CssModifier { this.backgroundColor = backgroundColor })
 
 expect fun Modifier.event(eventName: String, listener: () -> Unit) : Modifier
 

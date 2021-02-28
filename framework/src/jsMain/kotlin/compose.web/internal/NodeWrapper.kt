@@ -1,10 +1,10 @@
 package compose.web.internal
 
-import CssModifier
-import EventModifier
 import Modifier
-import external.Css
-import external.applyCss
+import io.sooj.CssModifier
+import io.sooj.EventModifier
+import io.sooj.external.Css
+import io.sooj.external.applyCss
 import kotlinx.browser.document
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement

@@ -7,7 +7,7 @@
 //import compose.web.event
 //import compose.web.onInput
 //import compose.web.property
-//import tag
+//import io.sooj.tag
 //import org.w3c.dom.HTMLInputElement
 //import org.w3c.dom.events.EventListener
 //
@@ -16,7 +16,7 @@
 //@Composable
 //fun Checkbox(modifier: Modifier = Modifier, state: CheckboxState) {
 //    // TODO: tbh, setting properties through the modifier feels super inefficient
-//    tag(
+//    io.sooj.tag(
 //        modifier = modifier
 //            .property<HTMLInputElement> { type = "checkbox" }
 //            .property<HTMLInputElement> { checked = state.value }
@@ -33,9 +33,9 @@
 //@Composable
 //fun TextInput(modifier: Modifier = Modifier, state: InputState) {
 //    // TODO: tbh, setting properties through the modifier feels super inefficient
-//    tag(
+//    io.sooj.tag(
 //        modifier = modifier
-//            .property<HTMLInputElement> { type = "text" }
+//            .property<HTMLInputElement> { type = "io.sooj.text" }
 //            .property<HTMLInputElement> { value = state.value }
 //            .onInput {
 //                state.value = (it.target as HTMLInputElement).value

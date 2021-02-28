@@ -1,3 +1,6 @@
+package io.sooj
+
+import Modifier
 import org.w3c.dom.events.EventListener
 
 actual fun Modifier.event(eventName: String, listener: () -> Unit) : Modifier =

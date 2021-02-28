@@ -1,8 +1,8 @@
-package compose.web
+package io.sooj
 
 import Modifier
 import androidx.compose.runtime.Composable
-import tag
+import io.sooj.tag
 
 @Composable
 fun h1(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
