@@ -3,6 +3,7 @@ package compose.web.internal
 import Modifier
 import io.sooj.external.applyCss
 import io.sooj.modifiers.AttrModifier
+import io.sooj.modifiers.ClassesModifier
 import io.sooj.modifiers.CssModifier
 import io.sooj.modifiers.EventModifier
 import kotlinx.browser.document
@@ -35,6 +36,7 @@ internal class NodeWrapper internal constructor(internal val realNode: Node) {
                 is CssModifier -> element.style.applyCss(mod.css)
                 is EventModifier -> element.addEventListener(mod.name, mod.listener)
                 is AttrModifier -> element.updateAttr(mod)
+                is ClassesModifier -> element.className = mod.classes
 //                is PropertyModifier -> element.apply(mod.configure)
 //                is RefModifier -> mod.configure(element)
             }

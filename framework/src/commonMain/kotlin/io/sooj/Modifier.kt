@@ -1,5 +1,7 @@
 import androidx.compose.runtime.Stable
 
+typealias mod = Modifier
+
 // taken from android version
 @Stable
 interface Modifier {

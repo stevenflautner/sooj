@@ -1,5 +1,6 @@
 import androidx.compose.runtime.*
 import io.sooj.browser.fullValue
+import io.sooj.modifiers.classes
 import io.sooj.modifiers.onClick
 import io.sooj.modifiers.onInput
 import io.sooj.modifiers.style
@@ -10,12 +11,19 @@ fun App() {
     div {
         var d by remember { mutableStateOf(0) }
 
-        div(Modifier.style {
+        div(mod.style {
             backgroundColor = if (d % 2 == 0) "black" else "red"
+            color = "white"
+            textAlign = "center"
         }.onClick {
             d++
         }) {
-            span {
+            span(mod.classes {
+                +"ASDk1"
+                +"ASDk1"
+                if (d % 2 == 0)
+                    +"heyy12"
+            }) {
                 text("Hello")
 
                 var input by remember { mutableStateOf("hey") }
