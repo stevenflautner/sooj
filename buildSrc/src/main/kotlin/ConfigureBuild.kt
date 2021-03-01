@@ -31,35 +31,30 @@ fun KotlinJvmTarget.compilation() {
 }
 
 fun Project.configureComposeCompiler() {
-    // Ignore compiler on the server
-    if (extra.has("server")) return
-
-//    gradle.taskGraph.hasTask("serverRun")
-//    if (project.hasProperty("server")) return
-
     gradle.taskGraph.whenReady {
-        if (!gradle.taskGraph.hasTask(":serverRun")) {
-            addComposeCompilerDependency()
-        }
-    }
+        if (gradle.taskGraph.hasTask(":serverRun")) return@whenReady
+        if (gradle.taskGraph.hasTask(":generateModifiers")) return@whenReady
 
-    fun KotlinJsTargetDsl.configure() {
-        compilations.configureEach {
-            kotlinOptions.freeCompilerArgs += listOf(
-                "-Xopt-in=kotlin.RequiresOptIn",
-                "-P", "plugin:androidx.compose.compiler.plugins.kotlin:generateDecoys=true"
-            )
-        }
-    }
+        addComposeCompilerDependency()
 
-    extensions.findByType<KotlinMultiplatformExtension>()?.apply {
-        js(IR) {
-            configure()
+        fun KotlinJsTargetDsl.configure() {
+            compilations.configureEach {
+                kotlinOptions.freeCompilerArgs += listOf(
+                    "-Xopt-in=kotlin.RequiresOptIn",
+                    "-P", "plugin:androidx.compose.compiler.plugins.kotlin:generateDecoys=true"
+                )
+            }
         }
-    } ?:
-    extensions.findByType<KotlinJsProjectExtension>()?.apply {
-        js(IR) {
-            configure()
+
+        extensions.findByType<KotlinMultiplatformExtension>()?.apply {
+            js(IR) {
+                configure()
+            }
+        } ?:
+        extensions.findByType<KotlinJsProjectExtension>()?.apply {
+            js(IR) {
+                configure()
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ import org.w3c.dom.HTMLElement
 import org.w3c.dom.Text
 
 @Composable
-actual fun tag(modifier: Modifier, tagName: String, content: @Composable () -> Unit) {
+actual fun tag(tagName: String, modifier: Modifier, content: @Composable () -> Unit) {
     ComposeNode<NodeWrapper, JsApplier>(
         factory = { NodeWrapper(tagName) },
         update = {

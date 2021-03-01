@@ -1,15 +1,45 @@
 import androidx.compose.runtime.*
-import io.sooj.div
-import io.sooj.onClick
-import io.sooj.span
+import io.sooj.browser.fullValue
+import io.sooj.modifiers.onClick
+import io.sooj.modifiers.onInput
+import io.sooj.modifiers.style
 import io.sooj.text
 
 @Composable
 fun App() {
     div {
-        div {
+        var d by remember { mutableStateOf(0) }
+
+        div(Modifier.style {
+            backgroundColor = if (d % 2 == 0) "black" else "red"
+        }.onClick {
+            d++
+        }) {
             span {
                 text("Hello")
+
+                var input by remember { mutableStateOf("hey") }
+
+                input(
+                    value = input,
+                    onInput = {
+                        input = it.fullValue
+                    }
+                )
+
+                div {
+                    h1 {
+                        text(input)
+                    }
+                    h2 {
+                        text("h2")
+                    }
+                    p {
+                        text("p")
+                    }
+//                    img(src = "/haa") {  }
+                    Img(d)
+                }
             }
         }
 //        var list by remember { mutableStateOf(listOf("Hey", "May")) }
@@ -69,5 +99,14 @@ fun App() {
 //                }
 //            }
 //        }
+    }
+}
+
+@Composable
+fun Img(counter: Int) {
+    div(Modifier.style {
+        backgroundColor = "red"
+    }) {
+        img(src = if (counter % 2 != 0) "fail.png" else "") {  }
     }
 }

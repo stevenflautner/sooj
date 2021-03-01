@@ -1,7 +1,7 @@
-package io.sooj.modifiers
+package io.sooj
 
 import Modifier
-import io.sooj.AttrModifier
+import io.sooj.modifiers.AttrModifier
 
 fun Modifier.attr(key: String, value: Any?) : Modifier =
     then(AttrModifier(key, value))

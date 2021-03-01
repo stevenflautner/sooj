@@ -1,15 +1,12 @@
 package compose.web.internal
 
 import Modifier
-import io.sooj.CssModifier
-import io.sooj.EventModifier
-import io.sooj.external.Css
 import io.sooj.external.applyCss
+import io.sooj.modifiers.AttrModifier
+import io.sooj.modifiers.CssModifier
+import io.sooj.modifiers.EventModifier
 import kotlinx.browser.document
-import org.w3c.dom.Element
-import org.w3c.dom.HTMLElement
-import org.w3c.dom.Node
-import org.w3c.dom.get
+import org.w3c.dom.*
 
 internal class NodeWrapper internal constructor(internal val realNode: Node) {
     internal constructor(tagName: String) : this(document.createElement(tagName))
@@ -25,20 +22,31 @@ internal class NodeWrapper internal constructor(internal val realNode: Node) {
 
         previous.foldOut(Unit) { mod, _ ->
             if (mod is EventModifier) {
-                element.removeEventListener(mod.eventName, mod.listener)
+                element.removeEventListener(mod.name, mod.listener)
             }
         }
         if (element.style.length > 0) {
             element.style.cssText = ""
         }
 
+        HTMLInputElement
         next.foldOut(Unit) { mod, _ ->
             when (mod) {
-                is CssModifier -> element.style.applyCss(Css().apply(mod.configure))
-                is EventModifier -> element.addEventListener(mod.eventName, mod.listener)
+                is CssModifier -> element.style.applyCss(mod.css)
+                is EventModifier -> element.addEventListener(mod.name, mod.listener)
+                is AttrModifier -> element.updateAttr(mod)
 //                is PropertyModifier -> element.apply(mod.configure)
 //                is RefModifier -> mod.configure(element)
             }
+        }
+    }
+
+    private fun HTMLElement.updateAttr(attr: AttrModifier) {
+        val value = attr.value?.toString() ?: ""
+        when (attr.name) {
+            "src" -> asDynamic().src = value
+            "value" -> asDynamic().value = value
+            else -> setAttribute(attr.name, value)
         }
     }
 
