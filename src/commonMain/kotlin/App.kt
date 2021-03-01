@@ -19,10 +19,10 @@ fun App() {
             d++
         }) {
             span(mod.classes {
-                +"ASDk1"
-                +"ASDk1"
+                +"HEY"
+                +"asdads"
                 if (d % 2 == 0)
-                    +"heyy12"
+                    +"awdadw"
             }) {
                 text("Hello")
 

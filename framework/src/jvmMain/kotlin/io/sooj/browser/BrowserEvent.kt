@@ -3,7 +3,7 @@ package io.sooj.browser
 import io.sooj.BrowserOnly
 import io.sooj.browser.elements.BrowserElement
 
-actual class BrowserEvent<T: BrowserElement> {
+actual class BrowserEvent<T: BrowserElement>: BrowserAny() {
 
     actual val type: String
         get() = throw BrowserOnly
