@@ -5,10 +5,8 @@ import androidx.compose.runtime.Composable
 import attrs
 import com.squareup.kotlinpoet.*
 import io.github.enjoydambience.kotlinbard.*
-import io.sooj.tag
 import model.Context
 import model.Tag
-import snakeCaseToCamelCase
 
 fun FileSpecBuilder.generateAttrs() {
     attrs.forEach {
@@ -30,11 +28,13 @@ fun FileSpecBuilder.generateAttrs() {
 typealias ContentLambda = () -> Unit
 
 fun FileSpecBuilder.generateTags() {
+    val compClass = ClassName("io.sooj", "Comp")
+
     addImport("io.sooj", "tag")
 
     Tag.values.distinctBy { it.tagName }.forEach { tag ->
         addFunction(tag.tagName) {
-//            receiver(tag.callingContext::class)
+            receiver(compClass)
             addAnnotation(Composable::class)
 
             for (attr in tag.supportedAttributes) {
@@ -65,7 +65,7 @@ fun FileSpecBuilder.generateTags() {
 
             addParameter(
                 "content", LambdaTypeName.get(
-//                receiver = contentReceier,
+                    receiver = compClass,
                     returnType = UNIT
                 ).copy(annotations = listOf(
                     buildAnnotation(Composable::class),

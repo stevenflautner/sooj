@@ -22,8 +22,7 @@ package androidx.compose.runtime
  */
 @OptIn(ComposeCompilerApi::class)
 @Composable
-inline fun <T> remember(calculation: @DisallowComposableCalls () -> T): T =
-    currentComposer.cache(false, calculation)
+expect fun <T> remember(calculation: @DisallowComposableCalls () -> T): T
 
 /**
  * Remember the value returned by [calculation] if [key1] is equal to the previous composition,
@@ -31,12 +30,10 @@ inline fun <T> remember(calculation: @DisallowComposableCalls () -> T): T =
  */
 @OptIn(ComposeCompilerApi::class)
 @Composable
-inline fun <T> remember(
+expect fun <T> remember(
     key1: Any?,
     calculation: @DisallowComposableCalls () -> T
-): T {
-    return currentComposer.cache(currentComposer.changed(key1), calculation)
-}
+): T
 
 /**
  * Remember the value returned by [calculation] if [key1] and [key2] are equal to the previous
@@ -44,16 +41,11 @@ inline fun <T> remember(
  */
 @OptIn(ComposeCompilerApi::class)
 @Composable
-inline fun <T> remember(
+expect fun <T> remember(
     key1: Any?,
     key2: Any?,
     calculation: @DisallowComposableCalls () -> T
-): T {
-    return currentComposer.cache(
-        currentComposer.changed(key1) or currentComposer.changed(key2),
-        calculation
-    )
-}
+): T
 
 /**
  * Remember the value returned by [calculation] if [key1], [key2] and [key3] are equal to the
@@ -61,19 +53,12 @@ inline fun <T> remember(
  */
 @OptIn(ComposeCompilerApi::class)
 @Composable
-inline fun <T> remember(
+expect inline fun <T> remember(
     key1: Any?,
     key2: Any?,
     key3: Any?,
     calculation: @DisallowComposableCalls () -> T
-): T {
-    return currentComposer.cache(
-        currentComposer.changed(key1) or
-            currentComposer.changed(key2) or
-            currentComposer.changed(key3),
-        calculation
-    )
-}
+): T
 
 /**
  * Remember the value returned by [calculation] if all values of [keys] are equal to the previous
@@ -81,14 +66,10 @@ inline fun <T> remember(
  */
 @OptIn(ComposeCompilerApi::class)
 @Composable
-inline fun <T> remember(
+expect inline fun <T> remember(
     vararg keys: Any?,
     calculation: @DisallowComposableCalls () -> T
-): T {
-    var invalid = false
-    for (key in keys) invalid = invalid or currentComposer.changed(key)
-    return currentComposer.cache(invalid, calculation)
-}
+): T
 
 /**
  * [key] is a utility composable that is used to "group" or "key" a block of execution inside of a

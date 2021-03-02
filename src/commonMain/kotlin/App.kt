@@ -1,13 +1,12 @@
 import androidx.compose.runtime.*
-import io.sooj.browser.fullValue
+import io.sooj.Component
 import io.sooj.modifiers.classes
 import io.sooj.modifiers.onClick
-import io.sooj.modifiers.onInput
 import io.sooj.modifiers.style
 import io.sooj.text
 
 @Composable
-fun App() {
+fun Component.App() {
     div {
         var d by remember { mutableStateOf(0) }
 
@@ -30,9 +29,9 @@ fun App() {
 
                 input(
                     value = input,
-                    onInput = {
-                        input = it.fullValue
-                    }
+//                    onInput = {
+//                        input = it.fullValue
+//                    }
                 )
 
                 div {
@@ -46,10 +45,11 @@ fun App() {
                         text("p")
                     }
 //                    img(src = "/haa") {  }
-                    Img(d)
+//                    Img(d)
                 }
             }
         }
+
 //        var list by remember { mutableStateOf(listOf("Hey", "May")) }
 //        var counter by remember { mutableStateOf(0) }
 //
@@ -110,11 +110,11 @@ fun App() {
     }
 }
 
-@Composable
-fun Img(counter: Int) {
-    div(Modifier.style {
-        backgroundColor = "red"
-    }) {
-        img(src = if (counter % 2 != 0) "fail.png" else "") {  }
-    }
-}
+//@Composable
+//fun Comp.Img(counter: Int) {
+//    div(Modifier.style {
+//        backgroundColor = "red"
+//    }) {
+//        img(src = if (counter % 2 != 0) "fail.png" else "") {  }
+//    }
+//}

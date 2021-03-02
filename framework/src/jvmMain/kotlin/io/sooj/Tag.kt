@@ -4,10 +4,10 @@ import Modifier
 import androidx.compose.runtime.Composable
 
 @Composable
-actual fun tag(tagName: String, modifier: Modifier, content: @Composable () -> Unit) {
-    println("<$tagName ${modifier.foldIn("") { acc, elem -> "$acc $elem" }}>")
+actual fun Component.tag(tagName: String, modifier: Modifier, content: @Composable Component.() -> Unit) {
+    builder.onTagStart(tagName, null, modifier)
     content()
-    println("</$tagName>")
+    builder.onTagEnd(tagName)
 }
 
 @Composable

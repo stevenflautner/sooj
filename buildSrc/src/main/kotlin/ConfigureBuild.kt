@@ -25,8 +25,8 @@ fun Project.addComposeCompilerDependency() {
 fun KotlinJvmTarget.compilation() {
     withJava()
     compilations.all {
-        kotlinOptions.jvmTarget = "1.8"
-//        kotlinOptions.useIR = true
+        kotlinOptions.jvmTarget = "11"
+        kotlinOptions.useIR = true
     }
 }
 
@@ -36,25 +36,26 @@ fun Project.configureComposeCompiler() {
         if (gradle.taskGraph.hasTask(":generateModifiers")) return@whenReady
 
         addComposeCompilerDependency()
+    }
 
-        fun KotlinJsTargetDsl.configure() {
-            compilations.configureEach {
-                kotlinOptions.freeCompilerArgs += listOf(
-                    "-Xopt-in=kotlin.RequiresOptIn",
-                    "-P", "plugin:androidx.compose.compiler.plugins.kotlin:generateDecoys=true"
-                )
-            }
+    fun KotlinJsTargetDsl.configure() {
+        compilations.configureEach {
+            kotlinOptions.freeCompilerArgs += listOf(
+                "-Xopt-in=kotlin.RequiresOptIn",
+                "-Xnew-inference",
+                "-P", "plugin:androidx.compose.compiler.plugins.kotlin:generateDecoys=true"
+            )
         }
+    }
 
-        extensions.findByType<KotlinMultiplatformExtension>()?.apply {
-            js(IR) {
-                configure()
-            }
-        } ?:
-        extensions.findByType<KotlinJsProjectExtension>()?.apply {
-            js(IR) {
-                configure()
-            }
+    extensions.findByType<KotlinMultiplatformExtension>()?.apply {
+        js(IR) {
+            configure()
+        }
+    } ?:
+    extensions.findByType<KotlinJsProjectExtension>()?.apply {
+        js(IR) {
+            configure()
         }
     }
 }

@@ -6,17 +6,18 @@ import androidx.compose.runtime.ComposeNode
 import compose.web.internal.JsApplier
 import compose.web.internal.NodeWrapper
 import kotlinx.browser.document
-import org.w3c.dom.HTMLElement
 import org.w3c.dom.Text
 
 @Composable
-actual fun tag(tagName: String, modifier: Modifier, content: @Composable () -> Unit) {
+actual fun Component.tag(tagName: String, modifier: Modifier, content: @Composable Component.() -> Unit) {
     ComposeNode<NodeWrapper, JsApplier>(
         factory = { NodeWrapper(tagName) },
         update = {
             set(modifier) { this.modifier = modifier }
         },
-        content = content
+        content = {
+            content()
+        }
     )
 }
 

@@ -66,14 +66,7 @@ kotlin {
 }
 
 tasks.create<JavaExec>("serverRun").apply {
-//                environment("DEV", true)
-//                args.add("DEV")
-//    systemProperty("server", true)
-//    project.setProperty("server", true)
-    doFirst {
-        project.ext["server"] = true
-    }
-
+    dependsOn(tasks.getByName("jsBrowserDevelopmentWebpack"))
     dependsOn(tasks.getByName("jvmJar"))
     classpath(tasks.getByName("jvmJar"))
 }
