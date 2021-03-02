@@ -11,6 +11,6 @@ actual fun Component.tag(tagName: String, modifier: Modifier, content: @Composab
 }
 
 @Composable
-actual fun text(value: String) {
-
+actual fun Component.text(value: String) {
+    builder.onText(value)
 }

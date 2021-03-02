@@ -4,7 +4,7 @@ import io.sooj.html.HTMLStreamBuilder
 fun main() {
     HTMLStreamBuilder(
         System.out,
-        prettyPrint = false,
+        prettyPrint = true,
 //        xhtmlCompatible = false,
     ).also {
         Component(it).apply {

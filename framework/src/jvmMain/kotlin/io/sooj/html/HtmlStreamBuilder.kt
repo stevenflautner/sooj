@@ -119,6 +119,11 @@ class HTMLStreamBuilder<out O : Appendable>(
         }
     }
 
+    fun onText(value: String) {
+        out.escapeAppend(value)
+        ln = false
+    }
+
 //    override fun onTagContent(content: CharSequence) {
 //        out.escapeAppend(content)
 //        ln = false
