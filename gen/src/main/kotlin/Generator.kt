@@ -1,5 +1,3 @@
-import generator.generateAttrs
-import generator.generateTags
 import io.github.enjoydambience.kotlinbard.buildFile
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.Path

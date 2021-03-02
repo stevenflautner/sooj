@@ -1,11 +1,10 @@
 package model
 
-import com.squareup.kotlinpoet.BOOLEAN
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.INT
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.STRING
-import com.squareup.kotlinpoet.TypeName
+import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import io.sooj.browser.BrowserEvent
+import io.sooj.browser.elements.BrowserElement
+import io.sooj.browser.elements.BrowserInputElement
 import snakeCaseToCamelCase
 
 // https://www.w3.org/TR/html/syntax.html#void-elements
@@ -192,7 +191,17 @@ sealed class Tag(
                     Attr.String("name"),
                     Attr.String("placeholder"),
                     Attr.String("aria-label"),
-                    Attr.String(name = "aria-labelledby", functionName = "ariaLabelledBy")
+                    Attr.String(name = "aria-labelledby", functionName = "ariaLabelledBy"),
+                    Attr.Custom(
+                        "onInput",
+                        "onInput",
+                        typeName = LambdaTypeName.get(
+                            null,
+                            BrowserEvent::class.parameterizedBy(BrowserInputElement::class),
+                            returnType = UNIT,
+                        ).copy(nullable = true),
+                        null
+                    ),
                 )
             ),
             Normal(

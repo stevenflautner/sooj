@@ -1,12 +1,15 @@
-package generator
-
-import Modifier
 import androidx.compose.runtime.Composable
-import attrs
-import com.squareup.kotlinpoet.*
-import io.github.enjoydambience.kotlinbard.*
-import model.Context
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.LambdaTypeName
+import com.squareup.kotlinpoet.UNIT
+import io.github.enjoydambience.kotlinbard.FileSpecBuilder
+import io.github.enjoydambience.kotlinbard.addFunction
+import io.github.enjoydambience.kotlinbard.addParameter
+import io.github.enjoydambience.kotlinbard.buildAnnotation
+import io.sooj.modifiers.onInput
+import model.Attr
 import model.Tag
+import model.attrs
 
 fun FileSpecBuilder.generateAttrs() {
     attrs.forEach {
@@ -14,23 +17,19 @@ fun FileSpecBuilder.generateAttrs() {
             receiver(Modifier::class)
             returns(Modifier::class)
 
-
             addParameter(it.name, ClassName("", it.paramType.simpleName!!).copy(nullable = true))
 
             addStatement("""return then(%T("${it.name}", ${it.name}))""", ClassName("io.sooj.modifiers", "AttrModifier"))
         }
     }
 }
-//@Composable
-//fun div(modifier: Modifier = Modifier, content: @Composable () -> Unit = {}) {
-//    tag(modifier, "div", content = content)
-//}
-typealias ContentLambda = () -> Unit
 
 fun FileSpecBuilder.generateTags() {
-    val compClass = ClassName("io.sooj", "Comp")
+    val compClass = ClassName("io.sooj", "Component")
 
     addImport("io.sooj", "tag")
+    addImport("io.sooj.modifiers", "Event")
+    addImport("io.sooj.modifiers", "onInput")
 
     Tag.values.distinctBy { it.tagName }.forEach { tag ->
         addFunction(tag.tagName) {
@@ -41,12 +40,21 @@ fun FileSpecBuilder.generateTags() {
 //                val filteredModifiers = attr.modifiers.filter {
 //                    isInline && it === KModifier.NOINLINE
 //                }
-                addParameter(attr.functionName, attr.className) {
-                    if (attr.defaultValue != null) {
-                        defaultValue(attr.defaultValue)
+                when (attr) {
+                    is Attr.Custom -> {
+                        addParameter(attr.functionName, attr.className) {
+                            defaultValue("%L", null)
+                        }
                     }
-//                    addModifiers(filteredModifiers)
+                    else -> {
+                        addParameter(attr.functionName, attr.className) {
+                            if (attr.defaultValue != null) {
+                                defaultValue(attr.defaultValue)
+                            }
+                        }
+                    }
                 }
+
 //                addParameter(
 //                    ParameterSpec.builder(attr.functionName, attr.className).apply {
 //                        if (attr.defaultValue != null) {
@@ -71,36 +79,23 @@ fun FileSpecBuilder.generateTags() {
                     buildAnnotation(Composable::class),
                 ))
             ) {
-
                 defaultValue("%L", "{}")
             }
 
             var modifierRef = "modifier"
 
             tag.supportedAttributes.forEach {
-                modifierRef += ".${it.functionName}(${it.functionName})"
+                modifierRef += when (it) {
+                    is Attr.Custom -> {
+                        if (tag.tagName == "input" && it.name == "onInput")
+                            ".${it.functionName}(${it.functionName} as Event)"
+                        else ".${it.functionName}(${it.functionName})"
+                    }
+                    else -> ".${it.functionName}(${it.functionName})"
+                }
             }
 
             addStatement("""tag("${tag.tagName}", $modifierRef, content = content)""")
         }
     }
-}
-//fun Modifier.value(value: Any?) : Modifier =
-//    then(AttrModifier("value", value))
-
-///**
-// * Represents an attribute modifier
-// * While the HTML parameter for an attribute is always String,
-// * giving a parameter a corresponding value and then convert it
-// * to string is better
-// */
-//class AttrModifier(val name: String, val paramType: KClass<*>)
-//
-//val attrs = listOf(
-//    AttrModifier("value", Any::class)
-//)
-
-fun Tag.childrenContext(): Context? = when (this) {
-    is Tag.Normal -> childrenContext
-    is Tag.Void -> null
 }

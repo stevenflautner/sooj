@@ -1,5 +1,6 @@
 import androidx.compose.runtime.*
 import io.sooj.Component
+import io.sooj.browser.fullValue
 import io.sooj.modifiers.classes
 import io.sooj.modifiers.onClick
 import io.sooj.modifiers.style
@@ -29,9 +30,9 @@ fun Component.App() {
 
                 input(
                     value = input,
-//                    onInput = {
-//                        input = it.fullValue
-//                    }
+                    onInput = {
+                        input = it.fullValue
+                    }
                 )
 
                 div {

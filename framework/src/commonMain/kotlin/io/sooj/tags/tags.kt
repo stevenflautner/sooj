@@ -1,5 +1,9 @@
 import androidx.compose.runtime.Composable
 import io.sooj.Component
+import io.sooj.browser.BrowserEvent
+import io.sooj.browser.elements.BrowserInputElement
+import io.sooj.modifiers.Event
+import io.sooj.modifiers.onInput
 import io.sooj.tag
 import kotlin.Boolean
 import kotlin.Int
@@ -19,25 +23,26 @@ public fun Component.a(
 }
 
 @Composable
-public fun Component.article(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.article(modifier: Modifier = Modifier, content: @Composable Component.() ->
+    Unit = {}): Unit {
   tag("article", modifier, content = content)
 }
 
 @Composable
-public fun Component.aside(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.aside(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit
+    = {}): Unit {
   tag("aside", modifier, content = content)
 }
 
 @Composable
-public fun Component.body(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.body(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("body", modifier, content = content)
 }
 
 @Composable
-public fun Component.b(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.b(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("b", modifier, content = content)
 }
 
@@ -51,19 +56,20 @@ public fun Component.button(
 }
 
 @Composable
-public fun Component.br(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.br(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("br", modifier, content = content)
 }
 
 @Composable
-public fun Component.caption(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.caption(modifier: Modifier = Modifier, content: @Composable Component.() ->
+    Unit = {}): Unit {
   tag("caption", modifier, content = content)
 }
 
 @Composable
-public fun Component.colgroup(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.colgroup(modifier: Modifier = Modifier, content: @Composable Component.() ->
+    Unit = {}): Unit {
   tag("colgroup", modifier, content = content)
 }
 
@@ -77,89 +83,98 @@ public fun Component.col(
 }
 
 @Composable
-public fun Component.details(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.details(modifier: Modifier = Modifier, content: @Composable Component.() ->
+    Unit = {}): Unit {
   tag("details", modifier, content = content)
 }
 
 @Composable
-public fun Component.div(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.div(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("div", modifier, content = content)
 }
 
 @Composable
-public fun Component.em(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.em(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("em", modifier, content = content)
 }
 
 @Composable
-public fun Component.figcaption(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
-    {}): Unit {
+public fun Component.figcaption(modifier: Modifier = Modifier, content: @Composable Component.() ->
+    Unit = {}): Unit {
   tag("figcaption", modifier, content = content)
 }
 
 @Composable
-public fun Component.figure(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.figure(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit
+    = {}): Unit {
   tag("figure", modifier, content = content)
 }
 
 @Composable
-public fun Component.footer(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.footer(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit
+    = {}): Unit {
   tag("footer", modifier, content = content)
 }
 
 @Composable
-public fun Component.h1(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.h1(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("h1", modifier, content = content)
 }
 
 @Composable
-public fun Component.h2(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.h2(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("h2", modifier, content = content)
 }
 
 @Composable
-public fun Component.h3(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.h3(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("h3", modifier, content = content)
 }
 
 @Composable
-public fun Component.h4(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.h4(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("h4", modifier, content = content)
 }
 
 @Composable
-public fun Component.h5(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.h5(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("h5", modifier, content = content)
 }
 
 @Composable
-public fun Component.h6(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.h6(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("h6", modifier, content = content)
 }
 
 @Composable
-public fun Component.head(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.head(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("head", modifier, content = content)
 }
 
 @Composable
-public fun Component.header(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.header(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit
+    = {}): Unit {
   tag("header", modifier, content = content)
 }
 
 @Composable
-public fun Component.hr(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.hr(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("hr", modifier, content = content)
 }
 
 @Composable
-public fun Component.i(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.i(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("i", modifier, content = content)
 }
 
@@ -184,12 +199,13 @@ public fun Component.input(
   placeholder: String? = null,
   ariaLabel: String? = null,
   ariaLabelledBy: String? = null,
+  onInput: ((BrowserEvent<BrowserInputElement>) -> Unit)? = null,
   modifier: Modifier = Modifier,
   content: @Composable Component.() -> Unit = {}
 ): Unit {
   tag("input",
-      modifier.type(type).maxLength(maxLength).value(value).name(name).placeholder(placeholder).ariaLabel(ariaLabel).ariaLabelledBy(ariaLabelledBy),
-      content = content)
+      modifier.type(type).maxLength(maxLength).value(value).name(name).placeholder(placeholder).ariaLabel(ariaLabel).ariaLabelledBy(ariaLabelledBy).onInput(onInput
+      as Event), content = content)
 }
 
 @Composable
@@ -226,14 +242,14 @@ public fun Component.link(
 }
 
 @Composable
-public fun Component.mark(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.mark(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("mark", modifier, content = content)
 }
 
 @Composable
-public fun Component.main(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.main(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("main", modifier, content = content)
 }
 
@@ -251,8 +267,8 @@ public fun Component.meta(
 }
 
 @Composable
-public fun Component.nav(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.nav(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("nav", modifier, content = content)
 }
 
@@ -266,7 +282,8 @@ public fun Component.option(
 }
 
 @Composable
-public fun Component.p(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.p(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("p", modifier, content = content)
 }
 
@@ -282,14 +299,14 @@ public fun Component.script(
 }
 
 @Composable
-public fun Component.section(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.section(modifier: Modifier = Modifier, content: @Composable Component.() ->
+    Unit = {}): Unit {
   tag("section", modifier, content = content)
 }
 
 @Composable
-public fun Component.select(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.select(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit
+    = {}): Unit {
   tag("select", modifier, content = content)
 }
 
@@ -304,38 +321,38 @@ public fun Component.source(
 }
 
 @Composable
-public fun Component.span(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.span(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("span", modifier, content = content)
 }
 
 @Composable
-public fun Component.strong(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.strong(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit
+    = {}): Unit {
   tag("strong", modifier, content = content)
 }
 
 @Composable
-public fun Component.summary(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.summary(modifier: Modifier = Modifier, content: @Composable Component.() ->
+    Unit = {}): Unit {
   tag("summary", modifier, content = content)
 }
 
 @Composable
-public fun Component.table(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.table(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit
+    = {}): Unit {
   tag("table", modifier, content = content)
 }
 
 @Composable
-public fun Component.tbody(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.tbody(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit
+    = {}): Unit {
   tag("tbody", modifier, content = content)
 }
 
 @Composable
-public fun Component.tfoot(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.tfoot(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit
+    = {}): Unit {
   tag("tfoot", modifier, content = content)
 }
 
@@ -356,8 +373,8 @@ public fun Component.th(
 }
 
 @Composable
-public fun Component.thead(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}):
-    Unit {
+public fun Component.thead(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit
+    = {}): Unit {
   tag("thead", modifier, content = content)
 }
 
@@ -371,7 +388,8 @@ public fun Component.time(
 }
 
 @Composable
-public fun Component.tr(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.tr(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("tr", modifier, content = content)
 }
 
@@ -403,6 +421,7 @@ public fun Component.video(
 }
 
 @Composable
-public fun Component.ul(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit = {}): Unit {
+public fun Component.ul(modifier: Modifier = Modifier, content: @Composable Component.() -> Unit =
+    {}): Unit {
   tag("ul", modifier, content = content)
 }
