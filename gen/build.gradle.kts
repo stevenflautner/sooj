@@ -22,7 +22,6 @@ kotlin {
 
 dependencies {
     implementation(project(":compose"))
-    implementation(project(":framework"))
     implementation(kotlin("stdlib"))
     implementation("com.squareup:kotlinpoet:1.7.2")
     implementation("io.github.enjoydambience:kotlinbard:0.4.0")
