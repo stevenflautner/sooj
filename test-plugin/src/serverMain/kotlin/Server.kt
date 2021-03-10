@@ -1,18 +1,23 @@
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import io.sooj.Component
+import androidx.compose.runtime.staticCompositionLocalOf
 import io.sooj.html.HTMLStreamBuilder
-import io.sooj.text
+
+val Ambient = staticCompositionLocalOf<String> {
+    "ASDASD"
+}
 
 fun main() {
     HTMLStreamBuilder(
         System.out, false
     ).also {
-        Component(it).apply {
-//            asd()
-            App()
-        }
+//        Ambient.current = "12"
+//        CompositionLocalProvider(Ambient provides "user") {
+//        }
+        println("ASD")
+        println(Ambient.current)
+//        Component(it).apply {
+////            asd()
+//            App()
+//        }
     }
 }
 

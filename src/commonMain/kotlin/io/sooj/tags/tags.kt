@@ -1,4 +1,5 @@
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ComposeNode
 import io.sooj.Component
 import io.sooj.browser.BrowserEvent
 import io.sooj.browser.elements.BrowserInputElement

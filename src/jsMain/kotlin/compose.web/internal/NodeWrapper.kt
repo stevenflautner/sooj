@@ -10,7 +10,9 @@ import kotlinx.browser.document
 import org.w3c.dom.*
 
 internal class NodeWrapper internal constructor(internal val realNode: Node) {
-    internal constructor(tagName: String) : this(document.createElement(tagName))
+
+    internal constructor(tagName: String) :
+            this(document.createElement(tagName))
 
     internal var modifier: Modifier = Modifier
         set(value) {
@@ -30,7 +32,6 @@ internal class NodeWrapper internal constructor(internal val realNode: Node) {
             element.style.cssText = ""
         }
 
-        HTMLInputElement
         next.foldOut(Unit) { mod, _ ->
             when (mod) {
                 is CssModifier -> element.style.applyCss(mod.css)

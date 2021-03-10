@@ -1,3 +1,7 @@
+import org.gradle.api.Project
+import org.gradle.api.publish.PublishingExtension
+import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
+
 //import org.gradle.api.Project
 //import org.gradle.api.artifacts.Dependency
 //import org.gradle.api.artifacts.dsl.RepositoryHandler
@@ -58,6 +62,80 @@
 //    extensions.findByType<KotlinJsProjectExtension>()?.apply {
 //        js(IR) {
 //            configure()
+//        }
+//    }
+//}
+//
+
+
+
+
+
+//fun Project.setupPublishing() {
+//    plugins.withType(MavenPublishPlugin::class) {
+//        extensions.configure<PublishingExtension>("publishing") {
+//            publications {
+//                extensions.configure<BintrayExtension>("bintray") {
+//                    bintrayPublishing(this@setupPublishing)
+//                }
+//            }
+//        }
+//
+//        val publishing = extensions.getByName("publishing") as PublishingExtension
+//
+//        tasks.withType<com.jfrog.bintray.gradle.tasks.BintrayUploadTask> {
+//            dependsOn(tasks.getByName("publishToMavenLocal"))
+//            doFirst {
+//                setPublications(
+//                    *publishing.publications
+//                        .filterIsInstance<MavenPublication>()
+//                        .map { publication ->
+//                            val moduleFile = buildDir.resolve("publications/${publication.name}/module.json")
+//                            if (moduleFile.exists()) {
+//                                publication.artifact(object : org.gradle.api.publish.maven.internal.artifact.FileBasedMavenArtifact(moduleFile) {
+//                                    override fun getDefaultExtension() = "module"
+//                                })
+//                            }
+//                            publication.name
+//                        }.toTypedArray()
+//                )
+//            }
+//        }
+//    }
+////    extensions.configure<PublishingExtension>("publishing") {
+////        publications {
+////            extensions.configure<BintrayExtension>("bintray") {
+////                bintrayPublishing(this@setupPublishing)
+////            }
+////        }
+////    }
+//}
+//
+//fun BintrayExtension.bintrayPublishing(project: Project): Unit = with(project) {
+//    val artifactName = project.name
+//    val artifactGroup = project.group.toString()
+//    val artifactVersion = project.version.toString()
+//
+//    val bintrayRepo = "sooj"
+//    val repoName = artifactName
+//    val versionDescription = "Pre-release 0.0.1"
+//    val projVcsUrl = "https://github.com/stevenflautner/sooj.git"
+//
+//    user = "stevenflautner"
+//    key = project.findProperty("bintrayKey").toString()
+//    publish = true
+//
+//    pkg.apply {
+//        repo = bintrayRepo
+//        name = repoName
+//        userOrg = "skipn"
+//        setLicenses("MIT")
+//        vcsUrl = projVcsUrl
+//        version.apply {
+//            name = artifactVersion
+//            desc = versionDescription
+//            released = Date().toString()
+//            vcsTag = artifactVersion
 //        }
 //    }
 //}

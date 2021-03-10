@@ -8,7 +8,7 @@ println("ASDJ12")
 
 repositories {
     mavenCentral()
-    mavenLocal()
+//    mavenLocal()
     maven {
         url = uri("https://plugins.gradle.org/m2/")
     }
@@ -21,6 +21,9 @@ repositories {
     }
     maven {
         url = uri("https://dl.bintray.com/kotlin/kotlinx")
+    }
+    maven {
+        url = uri("https://dl.bintray.com/skipn/sooj" )
     }
 }
 

@@ -6,7 +6,10 @@ plugins {
 
 buildscript {
     repositories {
-        mavenLocal()
+//        mavenLocal()
+        maven {
+            url = uri("https://dl.bintray.com/skipn/sooj" )
+        }
 //        maven {
 //            url = uri("https://plugins.gradle.org/m2/")
 //        }
@@ -16,7 +19,7 @@ buildscript {
 //        }
     }
     dependencies {
-        classpath("io.sooj:gradle-plugin:$SOOJ_VERSION")
+        classpath("io.sooj:gradle-plugin:0.0.2a")
     }
 }
 

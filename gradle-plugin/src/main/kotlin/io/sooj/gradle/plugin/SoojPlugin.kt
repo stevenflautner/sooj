@@ -1,14 +1,5 @@
 package io.sooj.gradle.plugin
 
-import COROUTINES_VERSION
-import DATE_TIME_VERSION
-import DEV_PROPERTY
-import JVM_TARGET
-import KTOR_VERSION
-import MAIN_CLASS_NAME
-import SERIALIZATION_VERSION
-import SOOJ_VERSION
-import configureComposeCompiler
 import io.sooj.gradle.plugin.tasks.SoojMeta
 import org.gradle.api.Plugin
 import org.gradle.api.Project

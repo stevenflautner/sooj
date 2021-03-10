@@ -1,15 +1,19 @@
 import androidx.compose.runtime.Composable
 import compose.web.renderComposable
 import io.sooj.Component
+import io.sooj.sooj
 import io.sooj.text
 import kotlinx.browser.document
 
 fun main() {
-    renderComposable(document.body!!) {
-        Component().apply {
-            App()
-        }
+    sooj {
+        App()
     }
+//    renderComposable(document.body!!) {
+//        Component().apply {
+//            App()
+//        }
+//    }
 }
 
 //@Composable

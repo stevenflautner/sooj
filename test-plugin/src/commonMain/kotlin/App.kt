@@ -4,12 +4,41 @@ import io.sooj.browser.fullValue
 import io.sooj.modifiers.classes
 import io.sooj.modifiers.onClick
 import io.sooj.modifiers.style
+import io.sooj.router.routePage
+import io.sooj.router.Router
 import io.sooj.text
+import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
 fun Component.App() {
+    body {
+        Router { route ->
+            when (route) {
+                "shop" -> Shop()
+                else -> Index()
+            }
+        }
+    }
+}
+
+@Composable
+fun Component.Shop() {
+    span(mod.onClick {
+        routePage("/")
+    }) {
+        text("Go to Index")
+    }
+}
+@Composable
+fun Component.Index() {
+    span(mod.onClick {
+        routePage("/shop")
+    }) {
+        text("Go to Shop")
+    }
     div {
         var d by remember { mutableStateOf(0) }
+        val sd = MutableStateFlow("")
 
         div(mod.style {
             backgroundColor = if (d % 2 == 0) "blue" else "red"
@@ -49,64 +78,6 @@ fun Component.App() {
                 }
             }
         }
-
-//        var list by remember { mutableStateOf(listOf("Hey", "May")) }
-//        var counter by remember { mutableStateOf(0) }
-//
-//        var bgColor by remember { mutableStateOf("red") }
-//
-//        val m = Modifier.onClick {
-//            println("COUNT IS: ${++counter}")
-//            list = list + "Count: $counter"
-//            bgColor = if (counter % 2 == 0) "black" else "red"
-//            println("ASD")
-//            println(bgColor)
-//        }
-//        .css {
-//            backgroundColor = bgColor
-//        }
-//        println(
-//            m.foldIn("") { acc, element ->
-////            println("")
-////            acc.add(element)
-//                if (element is EventModifier) "$acc ${element.eventName}=" else acc
-//            }
-//        )
-//
-//
-//        h1(m) {
-//            text("CLICK TO COUNT")
-//        }
-//
-//
-//        h2 {
-//            div(
-//                Modifier.css {
-//                    backgroundColor = if (counter % 2 == 0) "black" else "red"
-//                    println("COO ${counter}")
-//                }
-//            ) {
-//                text("CHECK IF THIS GETS REBUILT")
-//            }
-//        }
-//        div {
-//            span {
-//                text("COUNTED: $counter")
-//            }
-//        }
-//        div {
-//            span {
-//                div {
-//                    list.forEach {
-//                        div {
-//                            span {
-//                                text(it)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
     }
 }
 
