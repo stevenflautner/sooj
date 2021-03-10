@@ -126,7 +126,6 @@ class SoojPlugin : Plugin<Project> {
                             implementation(devNpm("postcss-loader", "4.1.0"))
                             implementation(devNpm("postcss", "8.1.10"))
                             implementation(devNpm("raw-loader", ""))
-                            implementation(npm("tailwindcss", "v2.0.1"))
                             extension.browser.dependency?.invoke(this)
                         }
                     }

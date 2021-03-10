@@ -1,11 +1,12 @@
 import androidx.compose.runtime.*
 import io.sooj.Component
 import io.sooj.browser.fullValue
+import io.sooj.modifiers.Classes
 import io.sooj.modifiers.classes
 import io.sooj.modifiers.onClick
 import io.sooj.modifiers.style
-import io.sooj.router.routePage
 import io.sooj.router.Router
+import io.sooj.router.routePage
 import io.sooj.text
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -47,12 +48,12 @@ fun Component.Index() {
         }.onClick {
             d++
         }) {
-            span(mod.classes {
+            span(mod.classes(Classes().apply {
                 +"HEY"
                 +"asdads"
                 if (d % 2 == 0)
                     +"awdadw"
-            }) {
+            })) {
                 text("Hello")
 
                 var input by remember { mutableStateOf("hey") }

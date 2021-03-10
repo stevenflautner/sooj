@@ -37,7 +37,11 @@ internal class NodeWrapper internal constructor(internal val realNode: Node) {
                 is CssModifier -> element.style.applyCss(mod.css)
                 is EventModifier -> element.addEventListener(mod.name, mod.listener)
                 is AttrModifier -> element.updateAttr(mod)
-                is ClassesModifier -> element.className = mod.classes
+                is ClassesModifier -> {
+                    element.className = mod.classes
+                    println(mod.classes)
+                }
+
 //                is PropertyModifier -> element.apply(mod.configure)
 //                is RefModifier -> mod.configure(element)
             }
