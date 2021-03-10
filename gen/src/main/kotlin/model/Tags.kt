@@ -1,10 +1,9 @@
 package model
 
+import BrowserEvent
+import BrowserInputElement
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import io.sooj.browser.BrowserEvent
-import io.sooj.browser.elements.BrowserElement
-import io.sooj.browser.elements.BrowserInputElement
 import snakeCaseToCamelCase
 
 // https://www.w3.org/TR/html/syntax.html#void-elements
@@ -197,7 +196,7 @@ sealed class Tag(
                         "onInput",
                         typeName = LambdaTypeName.get(
                             null,
-                            BrowserEvent::class.parameterizedBy(BrowserInputElement::class),
+                            BrowserEvent.parameterizedBy(BrowserInputElement),
                             returnType = UNIT,
                         ).copy(nullable = true),
                         null

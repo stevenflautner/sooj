@@ -18,6 +18,10 @@ abstract class EventModifierBase(val name: String) : Modifier.Element
  * Adds a css style configuration which would be applied when node is updated
  */
 internal class CssModifier(val css: Css) : Modifier.Element
+/**
+ * Adds a css style configuration which would be applied when node is updated
+ */
+internal class CssStringModifier(val css: String) : Modifier.Element
 
 /**
  * Updates target node properties on recomposition
@@ -25,7 +29,7 @@ internal class CssModifier(val css: Css) : Modifier.Element
  */
 internal class AttrModifier(val name: String, val value: Any?): Modifier.Element
 
-internal class ClassesModifier(val classes: String): Modifier.Element
+internal class ClassesModifier(val classes: String?): Modifier.Element
 
 class Classes : Modifier.Element {
 
@@ -58,6 +62,11 @@ class Classes : Modifier.Element {
 fun Modifier.style(css: @Composable Css.() -> Unit): Modifier {
     // Apply can't take composable so we call it with context
     return this.then(CssModifier(Css().apply { css() }))
+}
+@Composable
+fun Modifier.style(css: String): Modifier {
+    // Apply can't take composable so we call it with context
+    return this.then(CssStringModifier(css))
 }
 
 

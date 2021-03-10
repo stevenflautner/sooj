@@ -1,4 +1,6 @@
-import io.sooj.modifiers.AttrModifier
+package io.sooj.modifiers
+
+import Modifier
 
 public fun Modifier.value(value: Any?): Modifier = then(AttrModifier("value", value))
 

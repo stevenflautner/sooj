@@ -4,12 +4,12 @@ import kotlin.io.path.Path
 
 @ExperimentalPathApi
 fun main() {
-    val base = Path("../framework/src/commonMain/kotlin/io/sooj/")
-    buildFile(packageName = "", fileName = "attrs") {
+    val base = Path("../src/commonMain/kotlin/")
+    buildFile(packageName = "io.sooj.modifiers", fileName = "attrs") {
         generateAttrs()
-    }.writeTo(base.resolve("modifiers"))
+    }.writeTo(base)
 
-    buildFile(packageName = "", fileName = "tags") {
+    buildFile(packageName = "io.sooj.tags", fileName = "tags") {
         generateTags()
-    }.writeTo(base.resolve("tags"))
+    }.writeTo(base)
 }

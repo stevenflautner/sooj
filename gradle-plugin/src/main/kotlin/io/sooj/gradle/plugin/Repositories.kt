@@ -22,6 +22,6 @@ fun RepositoryHandler.all(project: Project) {
         url = project.uri("https://jitpack.io")
     }
     maven {
-        url = project.uri("https://dl.bintray.com/sooj/sooj")
+        url = project.uri("https://dl.bintray.com/skipn/sooj")
     }
 }

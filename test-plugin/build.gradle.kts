@@ -19,7 +19,7 @@ buildscript {
 //        }
     }
     dependencies {
-        classpath("io.sooj:gradle-plugin:0.0.3d")
+        classpath("io.sooj:gradle-plugin:0.0.3e")
     }
 }
 

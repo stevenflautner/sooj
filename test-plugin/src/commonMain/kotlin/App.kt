@@ -7,6 +7,7 @@ import io.sooj.modifiers.onClick
 import io.sooj.modifiers.style
 import io.sooj.router.Router
 import io.sooj.router.routePage
+import io.sooj.tags.*
 import io.sooj.text
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -24,7 +25,7 @@ fun Component.App() {
 
 @Composable
 fun Component.Shop() {
-    span(mod.onClick {
+    span(mod = mod.onClick {
         routePage("/")
     }) {
         text("Go to Index")
@@ -32,7 +33,7 @@ fun Component.Shop() {
 }
 @Composable
 fun Component.Index() {
-    span(mod.onClick {
+    span(mod = mod.onClick {
         routePage("/shop")
     }) {
         text("Go to Shop")
@@ -41,14 +42,10 @@ fun Component.Index() {
         var d by remember { mutableStateOf(0) }
         val sd = MutableStateFlow("")
 
-        div(mod.style {
-            backgroundColor = if (d % 2 == 0) "blue" else "red"
-            color = "white"
-            textAlign = "center"
-        }.onClick {
+        div(classes = "h12", mod = mod.style("background: red;").onClick {
             d++
         }) {
-            span(mod.classes(Classes().apply {
+            span(mod = mod.classes(Classes().apply {
                 +"HEY"
                 +"asdads"
                 if (d % 2 == 0)
@@ -84,7 +81,7 @@ fun Component.Index() {
 
 @Composable
 fun Component.Img(counter: Int) {
-    div(Modifier.style {
+    div(mod = mod.style {
         backgroundColor = "red"
     }) {
         img(src = if (counter % 2 != 0) "fail.png" else "") {  }

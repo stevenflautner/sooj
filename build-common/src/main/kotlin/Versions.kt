@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsTargetDsl
 
-const val SOOJ_VERSION = "0.0.3d"
+const val SOOJ_VERSION = "0.0.5"
 
 const val KTOR_VERSION = "1.5.1"
 const val SERIALIZATION_VERSION = "1.0.1"

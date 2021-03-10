@@ -2,10 +2,8 @@ import androidx.compose.runtime.Composable
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.LambdaTypeName
 import com.squareup.kotlinpoet.UNIT
-import io.github.enjoydambience.kotlinbard.FileSpecBuilder
-import io.github.enjoydambience.kotlinbard.addFunction
-import io.github.enjoydambience.kotlinbard.addParameter
-import io.github.enjoydambience.kotlinbard.buildAnnotation
+import com.squareup.kotlinpoet.asTypeName
+import io.github.enjoydambience.kotlinbard.*
 import io.sooj.modifiers.onInput
 import model.Attr
 import model.Tag
@@ -36,6 +34,10 @@ fun FileSpecBuilder.generateTags() {
             receiver(compClass)
             addAnnotation(Composable::class)
 
+            addParameter("classes", String::class.asTypeName().nullable) {
+                defaultValue("%L", null)
+            }
+
             for (attr in tag.supportedAttributes) {
 //                val filteredModifiers = attr.modifiers.filter {
 //                    isInline && it === KModifier.NOINLINE
@@ -65,7 +67,7 @@ fun FileSpecBuilder.generateTags() {
 //                )
             }
 
-            addParameter("modifier", Modifier::class) {
+            addParameter("mod", Modifier::class) {
                 defaultValue("%L", Modifier)
             }
 
@@ -82,17 +84,21 @@ fun FileSpecBuilder.generateTags() {
                 defaultValue("%L", "{}")
             }
 
-            var modifierRef = "modifier"
+            val modifierRef = StringBuilder("mod")
+
+            modifierRef.append(".classes(classes)")
 
             tag.supportedAttributes.forEach {
-                modifierRef += when (it) {
-                    is Attr.Custom -> {
-                        if (tag.tagName == "input" && it.name == "onInput")
-                            ".${it.functionName}(${it.functionName} as Event)"
-                        else ".${it.functionName}(${it.functionName})"
+                modifierRef.append(
+                    when (it) {
+                        is Attr.Custom -> {
+                            if (tag.tagName == "input" && it.name == "onInput")
+                                ".${it.functionName}(${it.functionName} as Event)"
+                            else ".${it.functionName}(${it.functionName})"
+                        }
+                        else -> ".${it.functionName}(${it.functionName})"
                     }
-                    else -> ".${it.functionName}(${it.functionName})"
-                }
+                )
             }
 
             addStatement("""tag("${tag.tagName}", $modifierRef, content = content)""")

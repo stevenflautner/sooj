@@ -61,7 +61,7 @@ class HTMLStreamBuilder<out O : Appendable>(
                         out.append(' ')
                         out.append("class")
                         out.append("=\"")
-                        out.escapeAppend(mod.classes)
+                        out.escapeAppend(mod.classes ?: "")
                         out.append('\"')
                     }
                 }
